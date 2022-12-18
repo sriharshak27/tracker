@@ -24,7 +24,7 @@ class _ProfilePageState extends State<ProfilePage> {
             Text('logged in as ${user.email!}'),
             MaterialButton(
               onPressed: (() => FirebaseAuth.instance.signOut()),
-              color: Colors.purple,
+              color: Colors.blueGrey,
               child: Text('sign out'),
             ),
           ],

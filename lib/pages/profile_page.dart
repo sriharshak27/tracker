@@ -12,6 +12,10 @@ class ProfilePage extends StatefulWidget {
 
 class _ProfilePageState extends State<ProfilePage> {
   final user = FirebaseAuth.instance.currentUser!;
+  
+  Future passwordReset() async {
+    await FirebaseAuth.instance.sendPasswordResetEmail(email: user.email!);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -91,82 +95,91 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
           ),
           //change email
-          SizedBox(height: 30,),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 40.0),
-            child: GestureDetector (
-              // onTap: ,// MANAGE CHANGING EMAILS
-              child: Container (
-                padding: EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.centerLeft,
-                    end: Alignment.centerRight,
-                    colors: [Colors.blueAccent.shade400, 
-                    Colors.lightBlueAccent.shade400
-                    ]
+          // SizedBox(height: 30,),
+          // Padding(
+          //   padding: const EdgeInsets.symmetric(horizontal: 40.0),
+          //   child: GestureDetector (
+          //     // onTap: ,// MANAGE CHANGING EMAILS
+          //     child: Container (
+          //       padding: EdgeInsets.all(20),
+          //       decoration: BoxDecoration(
+          //         gradient: LinearGradient(
+          //           begin: Alignment.centerLeft,
+          //           end: Alignment.centerRight,
+          //           colors: [Colors.blueAccent.shade400, 
+          //           Colors.lightBlueAccent.shade400
+          //           ]
+          //         ),
+          //         // color: Colors.lightBlueAccent,
+          //         borderRadius: BorderRadius.circular(30)
+          //       ),
+          //       child: Center(child: Text('Change Email', style: TextStyle(
+          //         color: Colors.white,
+          //         fontWeight: FontWeight.w400,
+          //         fontSize: 20,
+          //       ),),)
+          //     ),
+          //   ),
+          // ),
+          SizedBox(height: 60,),
+          SizedBox(
+            height: 300,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 40.0),
+                  child: GestureDetector (
+                    onTap: passwordReset,
+                    child: Container (
+                      padding: EdgeInsets.all(20),
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.centerLeft,
+                          end: Alignment.centerRight,
+                          colors: [Colors.blueAccent.shade400, 
+                          Colors.lightBlueAccent.shade400
+                          ]
+                        ),
+                        // color: Colors.lightBlueAccent,
+                        borderRadius: BorderRadius.circular(30)
+                      ),
+                      child: Center(child: Text('Reset Password', style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w400,
+                        fontSize: 20,
+                      ),),)
+                    ),
                   ),
-                  // color: Colors.lightBlueAccent,
-                  borderRadius: BorderRadius.circular(30)
                 ),
-                child: Center(child: Text('Change Email', style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w400,
-                  fontSize: 20,
-                ),),)
-              ),
-            ),
-          ),
-          SizedBox(height: 45,),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 40.0),
-            child: GestureDetector (
-              // onTap: ,// MANAGE CHANGING EMAILS
-              child: Container (
-                padding: EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.centerLeft,
-                    end: Alignment.centerRight,
-                    colors: [Colors.blueAccent.shade400, 
-                    Colors.lightBlueAccent.shade400
-                    ]
+                // SizedBox(height: 45,),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 40.0),
+                  child: GestureDetector (
+                    onTap: (() => FirebaseAuth.instance.signOut()),
+                    child: Container (
+                      padding: EdgeInsets.all(20),
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.centerLeft,
+                          end: Alignment.centerRight,
+                          colors: [Colors.blueAccent.shade400, 
+                          Colors.lightBlueAccent.shade400
+                          ]
+                        ),
+                        // color: Colors.lightBlueAccent,
+                        borderRadius: BorderRadius.circular(30)
+                      ),
+                      child: Center(child: Text('Sign Out', style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w400,
+                        fontSize: 20,
+                      ),),)
+                    ),
                   ),
-                  // color: Colors.lightBlueAccent,
-                  borderRadius: BorderRadius.circular(30)
                 ),
-                child: Center(child: Text('Reset Password', style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w400,
-                  fontSize: 20,
-                ),),)
-              ),
-            ),
-          ),
-          SizedBox(height: 45,),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 40.0),
-            child: GestureDetector (
-              onTap: (() => FirebaseAuth.instance.signOut()),
-              child: Container (
-                padding: EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.centerLeft,
-                    end: Alignment.centerRight,
-                    colors: [Colors.blueAccent.shade400, 
-                    Colors.lightBlueAccent.shade400
-                    ]
-                  ),
-                  // color: Colors.lightBlueAccent,
-                  borderRadius: BorderRadius.circular(30)
-                ),
-                child: Center(child: Text('Sign Out', style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w400,
-                  fontSize: 20,
-                ),),)
-              ),
+                // SizedBox(height: 45,),
+              ],
             ),
           ),
         ],

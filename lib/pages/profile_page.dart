@@ -71,7 +71,7 @@ class _ProfilePageState extends State<ProfilePage> {
               color: Colors.lightBlue,
             ),
           ),
-          SizedBox(height: 15,),
+          SizedBox(height: 35,),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 25.0),
             child: Row(

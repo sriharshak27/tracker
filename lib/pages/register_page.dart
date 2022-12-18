@@ -74,7 +74,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
                 SizedBox(height: 75,),
                 Text(
-                  'Register',
+                  'Register Here',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 36,

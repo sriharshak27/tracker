@@ -1,4 +1,4 @@
-import 'package:workout/classes/exercise.dart';
+import 'exercise.dart';
 
 class ExerciseAddition {
   final Exercise exercise;

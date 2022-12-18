@@ -1,4 +1,4 @@
-import 'package:workout/classes/day_cycle.dart';
+import 'day_cycle.dart';
 
 class Workout {
   final String name;

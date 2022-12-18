@@ -35,14 +35,14 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       body: _pages[_selectedIndex],
       bottomNavigationBar: Container(
-        color: Colors.black,
+        color: Colors.lightBlue,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 20),
           child: GNav(
-            backgroundColor: Colors.black,
+            backgroundColor: Colors.lightBlue,
             color: Colors.white,
             activeColor: Colors.white,
-            tabBackgroundColor: Colors.grey.shade800,
+            tabBackgroundColor: Colors.lightBlue.shade700,
             gap: 8,
             padding: EdgeInsets.all(16),
             onTabChange: ((index) => _navigateBar(index)),
@@ -67,15 +67,6 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ),
-      // bottomNavigationBar: BottomNavigationBar(
-        // currentIndex: _selectedIndex,
-        // onTap: _navigateBar,
-      //   type: BottomNavigationBarType.fixed,
-      //   items: [
-      //     BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-      //     BottomNavigationBarItem(icon: Icon(Icons.fitness_center), label: 'Manage Plans'),
-      //     BottomNavigationBarItem(icon: Icon(Icons.show_chart), label: 'Progress'),
-      // ]),
     );
   }
 }

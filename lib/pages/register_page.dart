@@ -58,7 +58,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: const [
                     Icon(
-                      Icons.show_chart, size: 150,
+                      Icons.show_chart_rounded, size: 150,
                       color: Colors.white,
                     ),
                     SizedBox(width: 10,),

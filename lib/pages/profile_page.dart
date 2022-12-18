@@ -68,7 +68,7 @@ class _ProfilePageState extends State<ProfilePage> {
             child: Icon(
               Icons.person_rounded,
               size: 150,
-              color: Colors.lightBlueAccent,
+              color: Colors.lightBlue,
             ),
           ),
           SizedBox(height: 15,),
@@ -85,7 +85,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
                 // SizedBox(width: 40,),
                 Text(
-                  'abcdef@gmail.com',
+                  user.email!,
                   style: TextStyle(
                     color: Colors.lightBlueAccent.shade700,
                     fontSize: 15

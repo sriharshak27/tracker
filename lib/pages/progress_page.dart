@@ -10,8 +10,8 @@ class ProgressPage extends StatefulWidget {
 class _ProgressPageState extends State<ProgressPage> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Text('progress page'),
+    return Scaffold(
+      backgroundColor: Colors.lightBlueAccent,
     );
   }
 }

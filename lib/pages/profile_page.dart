@@ -20,12 +20,12 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor:Colors.lightBlueAccent.shade100,// Colors.white,
       body: Column(
         children: [
           Container(
             width: MediaQuery.of(context).size.width,
-            height: 200,
+            height: MediaQuery.of(context).size.height * 0.25,
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 begin: Alignment.centerRight,
@@ -43,7 +43,7 @@ class _ProfilePageState extends State<ProfilePage> {
             child: SafeArea(
               child: Column(
                 children: [
-                  SizedBox(height: 30,),
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.05,),
                   Text(
                     'Profile',
                     style: TextStyle(
@@ -56,22 +56,22 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
             ),
           ),
-          SizedBox(height: 10,),
+          SizedBox(height: MediaQuery.of(context).size.height * 0.03,),
           Container(
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               border: Border.all(
-                color: Colors.lightBlueAccent,
+                color:Colors.grey.shade200,// Colors.lightBlueAccent,
                 width: 3,
               ),
             ),
             child: Icon(
               Icons.person_rounded,
               size: 150,
-              color: Colors.lightBlue,
+              color: Colors.grey.shade200//Colors.lightBlue,
             ),
           ),
-          SizedBox(height: 35,),
+          SizedBox(height: MediaQuery.of(context).size.height * 0.03,),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 25.0),
             child: Row(
@@ -80,50 +80,23 @@ class _ProfilePageState extends State<ProfilePage> {
                 // SizedBox(width: 10,),
                 Icon(
                   Icons.email_outlined,
-                  color: Colors.lightBlueAccent.shade700,
+                  color: Colors.white,//Colors.lightBlueAccent.shade700,
                   size: 35,
                 ),
                 // SizedBox(width: 40,),
                 Text(
                   user.email!,
                   style: TextStyle(
-                    color: Colors.lightBlueAccent.shade700,
-                    fontSize: 15
+                    color: Colors.white,//Colors.lightBlueAccent.shade700,
+                    fontSize: 18
                   ),
                 ),
               ],
             ),
           ),
-          //change email
-          // SizedBox(height: 30,),
-          // Padding(
-          //   padding: const EdgeInsets.symmetric(horizontal: 40.0),
-          //   child: GestureDetector (
-          //     // onTap: ,// MANAGE CHANGING EMAILS
-          //     child: Container (
-          //       padding: EdgeInsets.all(20),
-          //       decoration: BoxDecoration(
-          //         gradient: LinearGradient(
-          //           begin: Alignment.centerLeft,
-          //           end: Alignment.centerRight,
-          //           colors: [Colors.blueAccent.shade400, 
-          //           Colors.lightBlueAccent.shade400
-          //           ]
-          //         ),
-          //         // color: Colors.lightBlueAccent,
-          //         borderRadius: BorderRadius.circular(30)
-          //       ),
-          //       child: Center(child: Text('Change Email', style: TextStyle(
-          //         color: Colors.white,
-          //         fontWeight: FontWeight.w400,
-          //         fontSize: 20,
-          //       ),),)
-          //     ),
-          //   ),
-          // ),
-          SizedBox(height: 60,),
+          SizedBox(height: MediaQuery.of(context).size.height * 0.05,),
           SizedBox(
-            height: 300,
+            height: MediaQuery.of(context).size.height * 0.3,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [

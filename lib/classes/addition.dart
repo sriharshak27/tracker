@@ -20,7 +20,7 @@ class ExerciseAddition {
     }
     return exercise == (other).exercise;
   }
-  
+
   @override
   int get hashCode => 1;
 }

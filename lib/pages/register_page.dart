@@ -3,6 +3,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:workout/classes/workout.dart';
 
 class RegisterPage extends StatefulWidget {
   final VoidCallback showLoginPage;
@@ -35,6 +36,7 @@ class _RegisterPageState extends State<RegisterPage> {
           password: _passwordController.text.trim(),
         );
         addUserDetails();
+        createDefaultWorkout();
       } on FirebaseAuthException catch (e) {
         showDialog(
             context: context,
@@ -45,6 +47,17 @@ class _RegisterPageState extends State<RegisterPage> {
             });
       }
     }
+  }
+  Future createDefaultWorkout() async {
+    final user = FirebaseAuth.instance.currentUser;
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(user?.uid)
+        .set({
+          "id": user?.uid,
+          "workouts": [Workout.def().toJson()],
+          "selected_index": 0,
+        });
   }
 
   Future addUserDetails() async {

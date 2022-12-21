@@ -28,22 +28,36 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 
   Future signUp() async {
-    if (_confirmPassword.text.trim() != _passwordController.text.trim()) {
-      return;
+    if (passwordConfirmed()) {
+      try {
+        await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: _emailController.text.trim(),
+          password: _passwordController.text.trim(),
+        );
+        addUserDetails();
+      } on FirebaseAuthException catch (e) {
+        showDialog(
+            context: context,
+            builder: (context) {
+              return AlertDialog(
+                content: Text(e.message.toString()),
+              );
+            });
+      }
     }
-    FirebaseAuth.instance.createUserWithEmailAndPassword(
-      email: _emailController.text.trim(), 
-      password: _passwordController.text.trim()
-    );
-    addUserDetails();
   }
 
-    Future addUserDetails() async {
+  Future addUserDetails() async {
     final user = FirebaseAuth.instance.currentUser;
     await FirebaseFirestore.instance
         .collection('users')
-        .doc(user!.uid)
-        .set({'id': user.uid});
+        .doc(user?.uid)
+        .set({"id": user?.uid});
+  }
+
+  bool passwordConfirmed() {
+    return _passwordController.text.trim() ==
+        _confirmPassword.text.trim();
   }
 
   @override

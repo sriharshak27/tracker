@@ -1,8 +1,12 @@
 class Exercise {
-  final String name;
-  Map<DateTime, int> history;
+  late final String name;
+  late Map<DateTime, int> history;
   
-  Exercise({required this.name, this.history = const {}});
+  Exercise.inputs({required this.name, this.history = const {}});
+  Exercise.def(){
+    name = "Example: Bench";
+    history = const {};
+  }
 
   void addRecord(DateTime dateTime, int weight) {
     history[dateTime] = weight;
@@ -10,10 +14,6 @@ class Exercise {
 
   @override
   bool operator==(other) {
-    // Dart ensures that operator== isn't called with null
-    // if(other == null) {
-    //   return false;
-    // }
     if(other is! Exercise) {
       return false;
     }

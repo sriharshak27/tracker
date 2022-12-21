@@ -1,13 +1,18 @@
 import 'addition.dart';
 
 class WorkoutDay {
-  final String name;
-  List<ExerciseAddition> exercises;
+  late String name;
+  List<ExerciseAddition> exercises = [];
 
-  WorkoutDay({
+  WorkoutDay.inputs({
     required this.name,
     this.exercises = const []
   });
+
+  WorkoutDay.def() {
+    name = 'Sample full body';
+    exercises.add(ExerciseAddition.def());
+  }
 
   void setExercises(List<ExerciseAddition> additions) {
     exercises = additions;

@@ -35,8 +35,6 @@ class _RegisterPageState extends State<RegisterPage> {
       email: _emailController.text.trim(), 
       password: _passwordController.text.trim()
     );
-    
-    FirebaseFirestore.instance.collection('users').doc('user_id');
   }
 
   @override

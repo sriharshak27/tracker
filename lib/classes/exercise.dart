@@ -22,4 +22,21 @@ class Exercise {
   
   @override
   int get hashCode => 1;
+
+  List process() {
+    List ret = [];
+    history.forEach((key, value) {
+      ret.add({
+        "${key.month}/${key.day}/${key.month}" : value
+      });
+    });
+    return ret;
+  }
+
+  Map<String, dynamic>  toJson() {
+    return {
+      'exercise_name': name,
+      'history': process()
+    };
+  }
 }

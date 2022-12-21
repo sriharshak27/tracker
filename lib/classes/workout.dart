@@ -17,4 +17,21 @@ class Workout { // workout plan
   void removeDay(DateTime dateTime) {
     activities.remove(dateTime);
   }
+
+  List process() {
+    List ret = [];
+    activities.forEach((key, value) {
+      ret.add({
+        "${key.month}/${key.day}/${key.month}" : value.toJson()
+      });
+    });
+    return ret;
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'workout_name': name,
+      'activites' : process()
+    };
+  }
 }

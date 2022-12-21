@@ -26,4 +26,12 @@ class ExerciseAddition {
 
   @override
   int get hashCode => 1;
+
+  Map<String, dynamic> toJson() {
+    return {
+      'addition_name': exercise.toJson(),
+      'reps': reps,
+      'sets': sets,
+    };
+  }
 }

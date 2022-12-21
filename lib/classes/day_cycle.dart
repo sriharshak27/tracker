@@ -23,4 +23,19 @@ class WorkoutDay {
   void removeExercise(ExerciseAddition exercise) {
     exercises.remove(exercise);
   }
+
+  List process() {
+    List ret = [];
+    for(int i = 0; i < exercises.length; i++){
+      ret.add(exercises[i].toJson());
+    }
+    return ret;
+  }
+
+  Map<String, dynamic> toJson(){
+    return {
+      'day_name': name,
+      'exercises': process()
+    };
+  }
 }

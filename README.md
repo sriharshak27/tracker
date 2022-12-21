@@ -2,4 +2,4 @@
 
 Use this app to track workout routines and progress.
 
-Made with Flutter, Firebase, and Hive by Sriharsha Kocherla.
+Made with Flutter and Firebase by Sriharsha Kocherla.

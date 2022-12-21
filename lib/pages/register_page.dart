@@ -35,6 +35,15 @@ class _RegisterPageState extends State<RegisterPage> {
       email: _emailController.text.trim(), 
       password: _passwordController.text.trim()
     );
+    addUserDetails();
+  }
+
+    Future addUserDetails() async {
+    final user = FirebaseAuth.instance.currentUser;
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(user!.uid)
+        .set({'id': user.uid});
   }
 
   @override

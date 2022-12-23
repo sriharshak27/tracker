@@ -20,8 +20,11 @@ class Workout { // workout plan
   }
 
   Map<String, dynamic> toJson() {
-    Map<String, dynamic> tmp = activities;
+    Map<String, dynamic> tmp = {};
     tmp['workout_name'] = name;
+    activities.forEach((key, value) {
+      tmp[key] = value.toJson();
+    });
     return tmp;
   }
 }

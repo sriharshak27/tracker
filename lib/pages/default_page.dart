@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -10,10 +11,21 @@ class DefaultPage extends StatefulWidget {
   State<DefaultPage> createState() => _DefaultPageState();
 }
 class _DefaultPageState extends State<DefaultPage> {
-  final userid = FirebaseAuth.instance.currentUser?.uid;
+  late Map<String, dynamic> data;
+
+  Future findData() async {
+    final userid = FirebaseAuth.instance.currentUser?.uid;
+    await FirebaseFirestore.instance.collection('users')
+      .doc(userid).get().then((doc) => data = doc.data() as Map<String, dynamic>);
+  }
+
 
   @override
   Widget build(BuildContext context) {
+    // print(data);
+    int selectedIndex = data['selected_index'];
+    Map<String, dynamic> workout = data['workouts'][selectedIndex];
+    String workoutName = workout['workout_name'];
     return Scaffold(
       backgroundColor: Colors.lightBlueAccent.shade100,
       body: SafeArea(
@@ -33,13 +45,15 @@ class _DefaultPageState extends State<DefaultPage> {
                   ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: const [
-                      Text('PPL Split',
+                    children: [
+                      Text(
+                        workoutName,
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           color: Colors.white, fontSize: 30,
                           fontWeight: FontWeight.w200
-                        ),),
+                        ),
+                      ),
                       Text('Push Day',
                         textAlign: TextAlign.center,
                         style: TextStyle(

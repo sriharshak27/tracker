@@ -14,7 +14,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  // final user = FirebaseAuth.instance.currentUser!;
   int _selectedIndex = 0;
 
   void _navigateBar(int index) {

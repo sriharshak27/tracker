@@ -11,25 +11,9 @@ class DefaultPage extends StatefulWidget {
   State<DefaultPage> createState() => _DefaultPageState();
 }
 class _DefaultPageState extends State<DefaultPage> {
-  late Map<String, dynamic> data;
-
-  Future findData() async {
-    final userid = FirebaseAuth.instance.currentUser?.uid;
-    await FirebaseFirestore.instance.collection('users')
-      .doc(userid).get().then((doc) => data = doc.data() as Map<String, dynamic>);
-  }
-
 
   @override
   Widget build(BuildContext context) {
-
-    int selectedIndex = data['selected_index'];
-    Map<String, dynamic> workout = data['workouts'][selectedIndex];
-    String workoutName = workout['workout_name'];
-    // var today = DateTime.now();
-    // String date = "${today.day}/${today.day}/${today.year}";
-
-
     return Scaffold(
       backgroundColor: Colors.lightBlueAccent.shade100,
       body: SafeArea(
@@ -49,9 +33,9 @@ class _DefaultPageState extends State<DefaultPage> {
                   ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
+                    children: const [
                       Text(
-                        workoutName,
+                        "PPL Split",
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           color: Colors.white, fontSize: 30,

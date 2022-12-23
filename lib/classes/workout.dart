@@ -34,6 +34,7 @@ class Workout { // workout plan
     activities.forEach((key, value) {
       ret["${key.month}/${key.day}/${key.month}"] = value.toJson();
     });
+    // print(ret);
     return ret;
   }
 }

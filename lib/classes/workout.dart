@@ -1,40 +1,27 @@
+import 'date_proc.dart';
 import 'day_cycle.dart';
 
 class Workout { // workout plan
   late String name;
-  Map<DateTime, WorkoutDay> activities = {};
+  Map<String, WorkoutDay> activities = {};
 
   Workout.input({required this.name, this.activities = const {}});
 
   Workout.def() {
     name = 'Sample Chest Day';
-    activities = { DateTime.now() :WorkoutDay.def()};
+    activities = {ProcessDates.dateToString(DateTime.now()) : WorkoutDay.def()};
   }
 
   void addDay(DateTime dateTime, WorkoutDay day) {
-    activities[dateTime] = day;
+    activities[ProcessDates.dateToString(dateTime)] = day;
   }
   void removeDay(DateTime dateTime) {
-    activities.remove(dateTime);
+    activities.remove(ProcessDates.dateToString(dateTime));
   }
 
-  // List process() {
-  //   List ret = [];
-  //   activities.forEach((key, value) {
-  //     ret.add({
-  //       "${key.month}/${key.day}/${key.month}" : value.toJson()
-  //     });
-  //   });
-  //   return ret;
-  // }
-
   Map<String, dynamic> toJson() {
-    Map<String, dynamic> ret = {};
-    ret['workout_name'] = name;
-    activities.forEach((key, value) {
-      ret["${key.month}/${key.day}/${key.month}"] = value.toJson();
-    });
-    // print(ret);
-    return ret;
+    Map<String, dynamic> tmp = activities;
+    tmp['workout_name'] = name;
+    return tmp;
   }
 }

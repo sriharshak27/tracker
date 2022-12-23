@@ -18,20 +18,22 @@ class Workout { // workout plan
     activities.remove(dateTime);
   }
 
-  List process() {
-    List ret = [];
-    activities.forEach((key, value) {
-      ret.add({
-        "${key.month}/${key.day}/${key.month}" : value.toJson()
-      });
-    });
-    return ret;
-  }
+  // List process() {
+  //   List ret = [];
+  //   activities.forEach((key, value) {
+  //     ret.add({
+  //       "${key.month}/${key.day}/${key.month}" : value.toJson()
+  //     });
+  //   });
+  //   return ret;
+  // }
 
   Map<String, dynamic> toJson() {
-    return {
-      'workout_name': name,
-      'activites' : process()
-    };
+    Map<String, dynamic> ret = {};
+    ret['workout_name'] = name;
+    activities.forEach((key, value) {
+      ret["${key.month}/${key.day}/${key.month}"] = value.toJson();
+    });
+    return ret;
   }
 }

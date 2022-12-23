@@ -22,10 +22,14 @@ class _DefaultPageState extends State<DefaultPage> {
 
   @override
   Widget build(BuildContext context) {
-    // print(data);
+
     int selectedIndex = data['selected_index'];
     Map<String, dynamic> workout = data['workouts'][selectedIndex];
     String workoutName = workout['workout_name'];
+    // var today = DateTime.now();
+    // String date = "${today.day}/${today.day}/${today.year}";
+
+
     return Scaffold(
       backgroundColor: Colors.lightBlueAccent.shade100,
       body: SafeArea(

@@ -8,7 +8,7 @@ class Workout { // workout plan
   Workout.input({required this.name, this.activities = const {}});
 
   Workout.def() {
-    name = 'Sample Chest Day';
+    name = 'Sample PPL';
     activities = {ProcessDates.dateToString(DateTime.now()) : WorkoutDay.def()};
   }
 

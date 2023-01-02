@@ -10,7 +10,7 @@ class WorkoutDay {
   });
 
   WorkoutDay.def() {
-    name = 'Sample full body';
+    name = 'Sample Push Day';
     exercises.add(ExerciseAddition.def());
   }
 

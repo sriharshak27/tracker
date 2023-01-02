@@ -105,6 +105,11 @@ class _WorkoutPageState extends State<WorkoutPage> {
                           col.doc(uid).update({
                             'selected_index': index
                           });
+                          retrieveDocument().then((document) {
+                            setState(() {
+                              userDoc = document;
+                            });
+                          });
                         },
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),

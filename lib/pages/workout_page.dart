@@ -1,5 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:workout/pages/add_workout_page.dart';
 
@@ -11,8 +13,29 @@ class WorkoutPage extends StatefulWidget {
 }
 
 class _WorkoutPageState extends State<WorkoutPage> {
+  DocumentSnapshot? userDoc;
+
+  @override
+  void initState(){
+    super.initState();
+    retrieveDocument().then((document) {
+      setState(() {
+        userDoc = document;
+      });
+    });
+  }
+
+  Future<DocumentSnapshot> retrieveDocument() async {
+    final col = FirebaseFirestore.instance.collection('users');
+    final uid = FirebaseAuth.instance.currentUser?.uid;
+    final documentReference = col.doc(uid);
+    return documentReference.get();
+  }
+  
   @override
   Widget build(BuildContext context) {
+    int selInd = userDoc?['selected_index'] ?? 0;
+    String workoutName = userDoc?['workouts'][selInd]['workout_name'] ?? '';
     return Scaffold(
       backgroundColor: Colors.lightBlueAccent.shade100,
       body: SafeArea(
@@ -30,12 +53,24 @@ class _WorkoutPageState extends State<WorkoutPage> {
                     color: Colors.lightBlueAccent.shade700,
                     borderRadius: BorderRadius.circular(12),
                   ),
-                  child: Text('PPL Split',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.white, fontSize: 36,
-                      fontWeight: FontWeight.w200
-                    ),),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Text('Current Plan:',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.white, fontSize: 36,
+                          fontWeight: FontWeight.w200
+                        ),),
+                      
+                      Text(workoutName,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.white, fontSize: 36,
+                          fontWeight: FontWeight.w200
+                        ),),
+                    ],
+                  ),
                 ),
               ],
             ),

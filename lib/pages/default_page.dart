@@ -11,8 +11,7 @@ class DefaultPage extends StatefulWidget {
   State<DefaultPage> createState() => _DefaultPageState();
 }
 class _DefaultPageState extends State<DefaultPage> {
-  late DocumentSnapshot userDoc;
-  late int selInd;
+  DocumentSnapshot? userDoc;
 
   @override
   void initState(){
@@ -20,7 +19,6 @@ class _DefaultPageState extends State<DefaultPage> {
     retrieveDocument().then((document) {
       setState(() {
         userDoc = document;
-        selInd = userDoc['selected_index'];
       });
     });
   }
@@ -34,10 +32,13 @@ class _DefaultPageState extends State<DefaultPage> {
 
   @override
   Widget build(BuildContext context) {
-    String workoutName = userDoc['workouts'][selInd]['workout_name'];
+    int selInd = userDoc?['selected_index'] ?? 0;
+    String workoutName = userDoc?['workouts'][selInd]['workout_name'] ?? '';
     return Scaffold(
       backgroundColor: Colors.lightBlueAccent.shade100,
-      body: SafeArea(
+      body: userDoc == null
+        ? Center(child: CircularProgressIndicator(),)
+        : SafeArea(
         child: Column(
           children: [
             SizedBox(height: MediaQuery.of(context).size.width*0.1,),

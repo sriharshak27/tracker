@@ -94,6 +94,12 @@ class _WorkoutPageState extends State<WorkoutPage> {
                     ),
                     borderRadius: BorderRadius.circular(12)
                   ),
+                  child: ListView.builder(
+                    itemCount: userDoc?['workouts'].length??0,
+                    itemBuilder: (context, index) {
+                      return Text(userDoc?['workouts'][index]['workout_name'] ?? '');
+                    },
+                  ),
               ),
             ),
             SizedBox(height: MediaQuery.of(context).size.width*0.05,),

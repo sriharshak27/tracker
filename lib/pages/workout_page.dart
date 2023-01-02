@@ -97,7 +97,28 @@ class _WorkoutPageState extends State<WorkoutPage> {
                   child: ListView.builder(
                     itemCount: userDoc?['workouts'].length??0,
                     itemBuilder: (context, index) {
-                      return Text(userDoc?['workouts'][index]['workout_name'] ?? '');
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                          height: MediaQuery.of(context).size.height*0.05,
+                          decoration: BoxDecoration(
+                            color: Colors.lightBlueAccent.shade400,
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                            child: Text(userDoc?['workouts'][index]['workout_name'] ?? '',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18,
+                                fontWeight: FontWeight.w300
+                              ),
+                            ),
+                          ),
+                        ),
+                      );
+                      // return Text(userDoc?['workouts'][index]['workout_name'] ?? '');
                     },
                   ),
               ),

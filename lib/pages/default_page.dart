@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
-// import 'package:cloud_firestore/cloud_firestore.dart';
-// import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class DefaultPage extends StatefulWidget {
@@ -11,6 +11,20 @@ class DefaultPage extends StatefulWidget {
   State<DefaultPage> createState() => _DefaultPageState();
 }
 class _DefaultPageState extends State<DefaultPage> {
+  late DocumentSnapshot userDoc;
+
+  @override
+  void initState(){
+    super.initState();
+    retrieveDocument();
+  }
+
+  Future<void> retrieveDocument() async {
+    final col = FirebaseFirestore.instance.collection('users');
+    final uid = FirebaseAuth.instance.currentUser?.uid;
+    final documentReference = col.doc(uid);
+    userDoc = await documentReference.get();
+  }
 
   @override
   Widget build(BuildContext context) {

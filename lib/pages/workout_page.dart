@@ -97,7 +97,7 @@ class _WorkoutPageState extends State<WorkoutPage> {
                   child: ListView.builder(
                     itemCount: userDoc?['workouts'].length??0,
                     itemBuilder: (context, index) {
-                      if (index == selInd) return Container();
+                      // if (index == selInd) return Container();
                       return GestureDetector(
                         onTap: () {
                           final col = FirebaseFirestore.instance.collection('users');

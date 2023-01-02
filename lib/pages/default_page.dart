@@ -104,7 +104,7 @@ class _DefaultPageState extends State<DefaultPage> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 25.0),
               child: Container(
-                  height: MediaQuery.of(context).size.height*0.4,
+                  height: MediaQuery.of(context).size.height*0.5,
                   width: MediaQuery.of(context).size.width*0.9,
                   decoration: BoxDecoration(
                     border: Border.all(
@@ -163,33 +163,33 @@ class _DefaultPageState extends State<DefaultPage> {
                   ),
               ),
             ),
-            SizedBox(height: MediaQuery.of(context).size.width*0.05,),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 40.0),
-              child: GestureDetector (
-                // onTap: , Save weight
-                child: Container (
-                  padding: EdgeInsets.all(20),
-                  width: MediaQuery.of(context).size.height*0.3,
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.centerLeft,
-                      end: Alignment.centerRight,
-                      colors: [Colors.blueAccent.shade400, 
-                      Colors.lightBlueAccent.shade400
-                      ]
-                    ),
-                    // color: Colors.lightBlueAccent,
-                    borderRadius: BorderRadius.circular(30)
-                  ),
-                  child: Center(child: Text('Save Weight', style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.w400,
-                    fontSize: 20,
-                  ),),)
-                ),
-              ),
-            ),
+            // SizedBox(height: MediaQuery.of(context).size.width*0.05,),
+            // Padding(
+            //   padding: const EdgeInsets.symmetric(horizontal: 40.0),
+            //   child: GestureDetector (
+            //     // onTap: , Save weight
+            //     child: Container (
+            //       padding: EdgeInsets.all(20),
+            //       width: MediaQuery.of(context).size.height*0.3,
+            //       decoration: BoxDecoration(
+            //         gradient: LinearGradient(
+            //           begin: Alignment.centerLeft,
+            //           end: Alignment.centerRight,
+            //           colors: [Colors.blueAccent.shade400, 
+            //           Colors.lightBlueAccent.shade400
+            //           ]
+            //         ),
+            //         // color: Colors.lightBlueAccent,
+            //         borderRadius: BorderRadius.circular(30)
+            //       ),
+            //       child: Center(child: Text('Save Weight', style: TextStyle(
+            //         color: Colors.white,
+            //         fontWeight: FontWeight.w400,
+            //         fontSize: 20,
+            //       ),),)
+            //     ),
+            //   ),
+            // ),
           ],
         ),
       ),

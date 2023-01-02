@@ -37,7 +37,17 @@ class _DefaultPageState extends State<DefaultPage> {
     int selInd = userDoc?['selected_index'] ?? 0;
     String workoutName = userDoc?['workouts'][selInd]['workout_name'] ?? '';
     String todayDate = ProcessDates.dateToString(DateTime.now());
-    String workoutDay = userDoc?['workouts'][selInd][todayDate]['day_name'] ?? '';
+    String workoutDay;
+    if (userDoc == null) {
+      workoutDay = '';
+    }
+    else if (userDoc != null && !userDoc!['workouts'][selInd].containsKey(todayDate)) {
+      workoutDay = 'Rest Day';
+    } 
+    else {
+      workoutDay = userDoc?['workouts'][selInd][todayDate]['day_name'] ?? '';
+    }
+    
     return Scaffold(
       backgroundColor: Colors.lightBlueAccent.shade100,
       body: userDoc == null

@@ -97,10 +97,14 @@ class _WorkoutPageState extends State<WorkoutPage> {
                   child: ListView.builder(
                     itemCount: userDoc?['workouts'].length??0,
                     itemBuilder: (context, index) {
-                      if (index == selInd) return Container();
+                      // if (index == selInd) return Container();
                       return GestureDetector(
                         onTap: () {
-
+                          final col = FirebaseFirestore.instance.collection('users');
+                          final uid = FirebaseAuth.instance.currentUser?.uid;
+                          col.doc(uid).update({
+                            'selected_index': index
+                          });
                         },
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),

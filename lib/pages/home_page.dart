@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:workout/pages/default_page.dart';
 import 'package:workout/pages/profile_page.dart';
-import 'package:workout/pages/progress_page.dart';
+// import 'package:workout/pages/progress_page.dart';
 import 'package:workout/pages/workout_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -25,7 +25,7 @@ class _HomePageState extends State<HomePage> {
   final List<Widget> _pages = [
     DefaultPage(),
     WorkoutPage(),
-    ProgressPage(),
+    // ProgressPage(),
     ProfilePage(),
   ];
 
@@ -54,10 +54,10 @@ class _HomePageState extends State<HomePage> {
                 icon: Icons.fitness_center,
                 text: 'Manage Plans'
               ),
-              GButton(
-                icon: Icons.show_chart,
-                text: 'Progress'
-              ),
+              // GButton(
+              //   icon: Icons.show_chart,
+              //   text: 'Progress'
+              // ),
               GButton(
                 icon: Icons.person,
                 text: 'Profile'

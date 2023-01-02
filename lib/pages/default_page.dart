@@ -12,22 +12,29 @@ class DefaultPage extends StatefulWidget {
 }
 class _DefaultPageState extends State<DefaultPage> {
   late DocumentSnapshot userDoc;
+  late int selInd;
 
   @override
   void initState(){
     super.initState();
-    retrieveDocument();
+    retrieveDocument().then((document) {
+      setState(() {
+        userDoc = document;
+        selInd = userDoc['selected_index'];
+      });
+    });
   }
 
-  Future<void> retrieveDocument() async {
+  Future<DocumentSnapshot> retrieveDocument() async {
     final col = FirebaseFirestore.instance.collection('users');
     final uid = FirebaseAuth.instance.currentUser?.uid;
     final documentReference = col.doc(uid);
-    userDoc = await documentReference.get();
+    return documentReference.get();
   }
 
   @override
   Widget build(BuildContext context) {
+    String workoutName = userDoc['workouts'][selInd]['workout_name'];
     return Scaffold(
       backgroundColor: Colors.lightBlueAccent.shade100,
       body: SafeArea(
@@ -47,9 +54,10 @@ class _DefaultPageState extends State<DefaultPage> {
                   ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: const [
+                    children: [
                       Text(
-                        "PPL Split",
+                        workoutName,
+                        // "PPL Split",
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           color: Colors.white, fontSize: 30,

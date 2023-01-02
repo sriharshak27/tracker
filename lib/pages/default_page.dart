@@ -4,6 +4,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+import '../classes/date_proc.dart';
+
 class DefaultPage extends StatefulWidget {
   const DefaultPage({super.key});
 
@@ -34,6 +36,8 @@ class _DefaultPageState extends State<DefaultPage> {
   Widget build(BuildContext context) {
     int selInd = userDoc?['selected_index'] ?? 0;
     String workoutName = userDoc?['workouts'][selInd]['workout_name'] ?? '';
+    String todayDate = ProcessDates.dateToString(DateTime.now());
+    String workoutDay = userDoc?['workouts'][selInd][todayDate]['day_name'] ?? '';
     return Scaffold(
       backgroundColor: Colors.lightBlueAccent.shade100,
       body: userDoc == null
@@ -57,7 +61,7 @@ class _DefaultPageState extends State<DefaultPage> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Text(
-                        workoutName,
+                        workoutDay,
                         // "PPL Split",
                         textAlign: TextAlign.center,
                         style: TextStyle(
@@ -65,7 +69,7 @@ class _DefaultPageState extends State<DefaultPage> {
                           fontWeight: FontWeight.w200
                         ),
                       ),
-                      Text('Push Day',
+                      Text(workoutName,
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           color: Colors.white, fontSize: 30,

@@ -38,11 +38,13 @@ class _DefaultPageState extends State<DefaultPage> {
     String workoutName = userDoc?['workouts'][selInd]['workout_name'] ?? '';
     String todayDate = ProcessDates.dateToString(DateTime.now());
     String workoutDay;
+    bool isRest = false;
     if (userDoc == null) {
       workoutDay = '';
     }
     else if (userDoc != null && !userDoc!['workouts'][selInd].containsKey(todayDate)) {
       workoutDay = 'Rest Day';
+      isRest = true;
     } 
     else {
       workoutDay = userDoc?['workouts'][selInd][todayDate]['day_name'] ?? '';
@@ -109,6 +111,55 @@ class _DefaultPageState extends State<DefaultPage> {
                       color: Colors.blue,
                     ),
                     borderRadius: BorderRadius.circular(12)
+                  ),
+                  child: isRest ? Container() : ListView.builder(
+                    itemCount: userDoc?['workouts'][selInd][todayDate]['exercises'].length??0,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                          height: MediaQuery.of(context).size.height*0.1,
+                          decoration: BoxDecoration(
+                            color: Colors.lightBlueAccent.shade400,
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          // alignment: Alignment.topLeft,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 8,horizontal: 10.0),
+                            child: Column(
+                              children: [
+                                Text(
+          userDoc?['workouts'][selInd][todayDate]['exercises'][index]['addition_name']['exercise_name'] ?? '',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w300
+                                  ),
+                                ),
+                                SizedBox(height: 3,),
+                                Text(
+                                  'Sets: ${userDoc?['workouts'][selInd][todayDate]['exercises'][index]['sets']}',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w300
+                                  ),
+                                ),
+                                SizedBox(height: 3,),
+                                Text(
+                                  'Reps: ${userDoc?['workouts'][selInd][todayDate]['exercises'][index]['reps']}',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w300
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      );
+                    },
                   ),
               ),
             ),

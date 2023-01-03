@@ -6,7 +6,6 @@ class WorkoutDay {
 
   WorkoutDay.inputs({
     required this.name,
-    this.exercises = const []
   });
 
   WorkoutDay.def() {

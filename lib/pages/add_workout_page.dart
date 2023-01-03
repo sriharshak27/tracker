@@ -19,7 +19,7 @@ class _AddWorkoutState extends State<AddWorkout> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(backgroundColor: Colors.lightBlue,),
       body: Container(
         height: MediaQuery.of(context).size.height,
         decoration: BoxDecoration(

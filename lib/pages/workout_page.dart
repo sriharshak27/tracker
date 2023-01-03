@@ -3,6 +3,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:workout/pages/add_addition_page.dart';
 import 'package:workout/pages/add_workout_page.dart';
 
 class WorkoutPage extends StatefulWidget {
@@ -97,19 +98,23 @@ class _WorkoutPageState extends State<WorkoutPage> {
                   child: ListView.builder(
                     itemCount: userDoc?['workouts'].length??0,
                     itemBuilder: (context, index) {
-                      // if (index == selInd) return Container();
                       return GestureDetector(
                         onTap: () {
-                          final col = FirebaseFirestore.instance.collection('users');
-                          final uid = FirebaseAuth.instance.currentUser?.uid;
-                          col.doc(uid).update({
-                            'selected_index': index
-                          });
-                          retrieveDocument().then((document) {
-                            setState(() {
-                              userDoc = document;
-                            });
-                          });
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => AddExercise(workoutIndex: index,),
+                          ),
+                        );
+                          // final col = FirebaseFirestore.instance.collection('users');
+                          // final uid = FirebaseAuth.instance.currentUser?.uid;
+                          // col.doc(uid).update({
+                          //   'selected_index': index
+                          // });
+                          // retrieveDocument().then((document) {
+                          //   setState(() {
+                          //     userDoc = document;
+                          //   });
+                          // });
                         },
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
@@ -133,7 +138,6 @@ class _WorkoutPageState extends State<WorkoutPage> {
                           ),
                         ),
                       );
-                      // return Text(userDoc?['workouts'][index]['workout_name'] ?? '');
                     },
                   ),
               ),
@@ -160,7 +164,6 @@ class _WorkoutPageState extends State<WorkoutPage> {
                       Colors.lightBlueAccent.shade400
                       ]
                     ),
-                    // color: Colors.lightBlueAccent,
                     borderRadius: BorderRadius.circular(30)
                   ),
                   child: Center(child: Text('Add Workout', style: TextStyle(

@@ -1,7 +1,7 @@
-# workout
+# Tracker
 
-Use this app to track workout routines.
+Use Tracker to manage workout routines.
 
 uiScreenshots folder contains screenshots of the UI. Make sure to download the files for proper proportions.
 
-Made with Flutter and Firebase by Sriharsha Kocherla.
+Winter break Flutter and Firebase project by Sriharsha Kocherla.
